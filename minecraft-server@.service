@@ -1,0 +1,11 @@
+[Unit]
+Description=Minecraft server
+
+[Service]
+User=%i
+Group=%i
+Type=forking
+ExecStart=/usr/local/bin/minecraft_server --tmux --detach
+
+[Install]
+WantedBy=multi-user.target
