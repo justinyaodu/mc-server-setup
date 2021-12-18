@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -euo pipefail
-set -x
 
 config_file='/etc/minecraft_server'
 
@@ -11,13 +10,14 @@ log() {
 
 usage() {
 	cat << EOF
-Usage: ${0} [OPTIONS...] [MC_ARGS...]
+Usage: $(basename "${0}") [OPTIONS...] [MC_ARGS...]
 Start a Minecraft server.
 
 Options:
   -s, --server DIR  start the server in this directory
   -t, --tmux        run the server in a tmux session
   -d, --detach      detach the tmux session
+      --debug       run the script with set -x
   -h, --help        show this help message and exit
 EOF
 }
@@ -41,6 +41,9 @@ main() {
 				;;
 			-d|--detach)
 				detach=1
+				;;
+			--debug)
+				set -x
 				;;
 			-h|--help)
 				usage
